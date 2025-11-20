@@ -82,6 +82,7 @@ class Application extends Container{
 
     public function boot() {
         $this->startOutputBuffer();
+        Config::load();
         ProviderManager::loadProviders();
     }
     private function startOutputBuffer()

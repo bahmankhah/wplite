@@ -1,5 +1,6 @@
 <?php
 
+use WPLite\Facades\App;
 use WPLite\Facades\Route;
 use WPLite\Facades\View;
 
@@ -29,8 +30,9 @@ if (!function_exists('appLogger')) {
     function appLogger($message)
     {
         $message = (string) $message;
-        $plugin_dir = WP_PLUGIN_DIR . '/' . appConfig('app.name');
-        $log_file = $plugin_dir . '/logs/donapp-errors.log';
+        // $plugin_dir = WP_PLUGIN_DIR . '/' . appConfig('app.name');
+        $plugin_dir = App::pluginPath();
+        $log_file = $plugin_dir . '/logs/wplite-errors.log';
         // Ensure the directory exists
         $directory = dirname($log_file);
         if (!is_dir($directory)) {
