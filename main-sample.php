@@ -2,8 +2,8 @@
 
 use WPLite\Facades\App;
 /**
- * Plugin Name: Donapp Core
- * Description: Donapp Core.
+ * Plugin Name: WPLite Core
+ * Description: WPLite Core.
  * Version: 1.0
  * Author: Hesam
  */

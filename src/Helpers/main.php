@@ -7,13 +7,13 @@ use WPLite\Facades\View;
 if (!function_exists('appConfig')) {
     function appConfig($key = null, $default = null)
     {
-        global $donapp_configs;
+        global $wplite_configs;
         if ($key === null) {
-            return $donapp_configs;
+            return $wplite_configs;
         }
 
         $keys = explode('.', $key);
-        $value = $donapp_configs;
+        $value = $wplite_configs;
 
         foreach ($keys as $keyPart) {
             if (is_array($value) && array_key_exists($keyPart, $value)) {

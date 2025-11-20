@@ -4,6 +4,7 @@ namespace WPLite;
 
 use Exception;
 use ReflectionClass;
+use WPLite\Facades\App;
 
 class Application extends Container{
     /**
@@ -82,6 +83,7 @@ class Application extends Container{
 
     public function boot() {
         $this->startOutputBuffer();
+        load_env_file( App::pluginPath() . '/.env' );
         Config::load();
         ProviderManager::loadProviders();
     }
