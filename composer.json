@@ -1,5 +1,5 @@
 {
-    "name": "hsml/wplite",
+    "name": "hsm/wplite",
     "description": "WPLite WordPress Framework",
     "type": "library",
     "autoload": {
