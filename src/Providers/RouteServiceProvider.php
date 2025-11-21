@@ -7,24 +7,17 @@ use WPLite\Provider;
 
 class RouteServiceProvider extends Provider
 {
-    public function boot()
+    public function onInit()
     {
-        // load frontend routes
-        Route::loadRoutesFile(App::pluginPath() . 'routes/web.php');
-
-        // load admin routes
         if (is_admin()) {
             Route::loadRoutesFile(App::pluginPath() . 'routes/admin.php');
         }
-
-        // load ajax routes
+        
         if (wp_doing_ajax()) {
             Route::loadRoutesFile(App::pluginPath() . 'routes/ajax.php');
         }
+        Route::loadRoutesFile(App::pluginPath() . 'routes/web.php');
 
-        // load REST routes
-        add_action('rest_api_init', function () {
-            Route::loadRoutesFile(App::pluginPath() . 'routes/rest.php');
-        });
+        Route::loadRoutesFile(App::pluginPath() . 'routes/rest.php');
     }
 }
