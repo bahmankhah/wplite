@@ -1,15 +1,15 @@
 <?php
 
-namespace WPLite\Auth;
+namespace WPLite\Cache;
 
 use WPLite\Adapters\AdapterManager;
 
 
-class AuthManager extends AdapterManager
+class CacheManager extends AdapterManager
 {
 
     public function getKey(): string{
-        return 'auth';
+        return 'cache';
     }
 
 }
