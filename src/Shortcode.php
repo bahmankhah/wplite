@@ -1,9 +1,8 @@
 <?php
 
 namespace WPLite;
-use WPLite\Contracts\ShortcodeProvider;
 
-abstract class Shortcode implements ShortcodeProvider
+abstract class Shortcode
 {
  /**
      * The shortcode tag: [example]
