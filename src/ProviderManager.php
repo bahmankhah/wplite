@@ -19,7 +19,7 @@ class ProviderManager
         $providers = [
             \WPLite\Providers\RouteServiceProvider::class,
         ];
-        $providers = array_merge($providers, Config::get('app.providers', []));
+        $providers = array_merge($providers, appConfig('app.providers', []));
         foreach (get_declared_classes() as $declared) {
             if (strpos($declared, 'Src\\Provider\\') === 0 && !in_array($declared, $providers, true)) {
                 $providers[] = $declared;
