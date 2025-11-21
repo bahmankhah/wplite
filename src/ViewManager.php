@@ -20,5 +20,6 @@ class ViewManager{
     public function render(string $view, array $data = []): void {
         $view = str_replace('.', '/', $view);
         echo $this->make($view, $data);
+        exit;
     }
 }

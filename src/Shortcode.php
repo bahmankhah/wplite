@@ -45,5 +45,5 @@ abstract class Shortcode
      * Render the output HTML
      * Must be implemented by child classes
      */
-    abstract public function render(): string;
+    abstract public function render();
 }
