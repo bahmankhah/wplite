@@ -83,7 +83,7 @@ class Application extends Container{
 
     public function boot() {
         $this->startOutputBuffer();
-        load_env_file( App::pluginPath() . '/.env' );
+        load_env_file( App::pluginPath() . '.env' );
         Config::load();
         ProviderManager::loadProviders();
     }

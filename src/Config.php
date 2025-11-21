@@ -7,7 +7,7 @@ use WPLite\Facades\App;
 class Config{
 
     public static function load(){
-        $files = glob(App::pluginPath() . '/src/configs/*.php');
+        $files = glob(App::pluginPath() . 'configs/*.php');
         $configs = [];
         foreach ($files as $file) {
             $configs[basename($file, '.php')] = require_once($file);

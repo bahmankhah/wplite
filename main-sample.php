@@ -10,10 +10,8 @@ use WPLite\Facades\App;
 
 if (!defined('ABSPATH')) exit;
 
-define('WPLITE_FILE', __FILE__);
-define('WPLITE_PATH', plugin_dir_path(__FILE__));
 require __DIR__ . '/vendor/autoload.php';
-App::setPluginFile(WPLITE_FILE);
-App::setPluginPath(WPLITE_PATH);
+App::setPluginFile(__FILE__);
+App::setPluginPath(plugin_dir_path(__FILE__));
 
 App::boot();

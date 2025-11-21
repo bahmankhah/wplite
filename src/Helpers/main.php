@@ -32,7 +32,7 @@ if (!function_exists('appLogger')) {
         $message = (string) $message;
         // $plugin_dir = WP_PLUGIN_DIR . '/' . appConfig('app.name');
         $plugin_dir = App::pluginPath();
-        $log_file = $plugin_dir . '/logs/wplite-errors.log';
+        $log_file = $plugin_dir . 'logs/wplite-errors.log';
         // Ensure the directory exists
         $directory = dirname($log_file);
         if (!is_dir($directory)) {

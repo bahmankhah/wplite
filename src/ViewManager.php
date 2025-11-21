@@ -2,9 +2,11 @@
 
 namespace WPLite;
 
+use WPLite\Facades\App;
+
 class ViewManager{
     private function make(string $view, array $data = []): string {
-        $filePath = __DIR__ . "/../views/{$view}.view.php";
+        $filePath = App::pluginPath() . "views/{$view}.view.php";
         if (!file_exists($filePath)) {
             throw new \InvalidArgumentException("View [{$view}] does not exist.");
         }

@@ -78,10 +78,6 @@ class ProviderManager
                 $provider->deactivate();
             }
         });
-        register_uninstall_hook(App::pluginFile(), function () {
-            foreach ($this->instances as $provider) {
-                $provider->uninstall();
-            }
-        });
+        register_uninstall_hook(App::pluginFile(), [$this->instances, 'uninstall']);
     }
 }
