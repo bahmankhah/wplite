@@ -2,6 +2,8 @@
 
 namespace WPLite;
 
+use WPLite\Facades\App;
+
 class ProviderManager
 {
     protected $providers = [];
@@ -66,17 +68,17 @@ class ProviderManager
                 $provider->rest();
             }
         });
-        register_activation_hook(WPLITE_FILE, function () {
+        register_activation_hook(App::pluginFile(), function () {
             foreach ($this->instances as $provider) {
                 $provider->activate();
             }
         });
-        register_deactivation_hook(WPLITE_FILE, function () {
+        register_deactivation_hook(App::pluginFile(), function () {
             foreach ($this->instances as $provider) {
                 $provider->deactivate();
             }
         });
-        register_uninstall_hook(WPLITE_FILE, function () {
+        register_uninstall_hook(App::pluginFile(), function () {
             foreach ($this->instances as $provider) {
                 $provider->uninstall();
             }
