@@ -51,10 +51,8 @@ class ProviderManager
             }
         });
 
-        if (is_admin()) {
-            foreach ($this->instances as $provider) {
-                $provider->admin();
-            }
+        foreach ($this->instances as $provider) {
+            $provider->admin();
         }
 
         if (wp_doing_ajax()) {

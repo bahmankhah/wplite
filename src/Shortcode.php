@@ -6,18 +6,21 @@ abstract class Shortcode
 {
  /**
      * The shortcode tag: [example]
+     * @var string
      */
-    protected string $tag;
+    protected $tag;
 
     /**
      * Shortcode attributes
+     * @var array
      */
-    protected array $attributes = [];
+    protected $attributes = [];
 
     /**
      * Shortcode content (if exists)
+     * @var string|null
      */
-    protected ?string $content = null;
+    protected $content = null;
 
     /**
      * Register the shortcode with WordPress
