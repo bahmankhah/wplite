@@ -94,7 +94,7 @@ if(!function_exists('view')){
         return View::render($path, $data);
     }
 }
-if(!function_exists(('reverse'))){
+if(!function_exists('reverse')){
     function reverse($routeName, $params = [], $prefix = null){
         /**
          * @var WPLite\RouteDefinition $routeDef

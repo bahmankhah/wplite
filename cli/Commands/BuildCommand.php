@@ -317,7 +317,19 @@ class BuildCommand extends Command
         // 4. Replace all placeholders with the actual namespace
         $content = str_replace($placeholder, $newNamespace, $content);
 
-        // 5. Add namespace declaration at the top if needed
+        // 5. Update function_exists checks to use namespaced function names
+        // function_exists('appLogger') -> function_exists('Forooshyar\\WPLite\\appLogger')
+        $content = preg_replace_callback(
+            "/function_exists\\s*\\(\\s*['\"]([a-zA-Z_][a-zA-Z0-9_]*)['\"]\\s*\\)/",
+            function ($matches) use ($newNamespace) {
+                $funcName = $matches[1];
+                $namespacedFunc = $newNamespace . '\\' . $funcName;
+                return "function_exists('{$namespacedFunc}')";
+            },
+            $content
+        );
+
+        // 6. Add namespace declaration at the top if needed
         if ($needsNamespace) {
             $content = preg_replace(
                 '/^<\?php\s*/',
