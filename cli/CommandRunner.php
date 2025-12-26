@@ -98,22 +98,22 @@ class CommandRunner
         echo "    php wplite <command> [options]\n";
         echo "\n";
         echo "  \033[1;33mAvailable Commands:\033[0m\n";
-        echo "    \033[32mbuild\033[0m         Build the framework with your plugin namespace (recommended)\n";
+        echo "    \033[32mbuild\033[0m         Build the framework with your plugin namespace\n";
         echo "    \033[90minstall\033[0m       [deprecated] Modify src/ directly (destructive)\n";
         echo "\n";
         echo "  \033[1;33mBuild Options:\033[0m\n";
-        echo "    --prefix=<Name>   The namespace prefix (e.g., MyPlugin)\n";
-        echo "    --output=<path>   Output directory (default: ./core)\n";
+        echo "    --prefix=<Name>   The namespace prefix (e.g., Forooshyar)\n";
+        echo "    --output=<path>   Output directory (default: src/WPLite)\n";
         echo "    --dry-run         Preview changes without creating files\n";
         echo "\n";
         echo "  \033[1;33mExamples:\033[0m\n";
-        echo "    php wplite build --prefix=MyPlugin              # Build to ./core\n";
-        echo "    php wplite build --prefix=MyPlugin --output=lib # Build to ./lib\n";
-        echo "    php wplite build                                # Uses saved prefix\n";
-        echo "    php wplite build --dry-run                      # Preview only\n";
+        echo "    php vendor/hsm/wplite/wplite build --prefix=Forooshyar\n";
+        echo "    php vendor/hsm/wplite/wplite build   # uses saved prefix\n";
         echo "\n";
-        echo "  \033[1;33mUsage from Plugin (via Composer):\033[0m\n";
-        echo "    php vendor/hsm/wplite/wplite build --prefix=YourPlugin --output=wplite\n";
+        echo "  \033[1;33mHow it works:\033[0m\n";
+        echo "    Builds WPLite into src/WPLite/ with your namespace prefix.\n";
+        echo "    Classes autoload via Composer's PSR-4 (e.g., Forooshyar\\WPLite\\*).\n";
+        echo "    Just require src/WPLite/helpers.php for helper functions.\n";
         echo "\n";
     }
 
