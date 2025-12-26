@@ -2,6 +2,7 @@
 
 namespace WPLiteCLI;
 
+use WPLiteCLI\Commands\BuildCommand;
 use WPLiteCLI\Commands\InstallCommand;
 
 class CommandRunner
@@ -18,7 +19,8 @@ class CommandRunner
     private function registerCommands(): void
     {
         $this->commands = [
-            'install' => InstallCommand::class,
+            'build' => BuildCommand::class,
+            'install' => InstallCommand::class, // Deprecated: kept for backward compatibility
             // Future commands can be added here:
             // 'make:controller' => MakeControllerCommand::class,
             // 'make:model' => MakeModelCommand::class,
@@ -90,23 +92,28 @@ class CommandRunner
     private function showHelp(): void
     {
         echo "\n";
-        echo "  \033[1;36mWPLite CLI\033[0m - WordPress Plugin Framework Branding Tool\n";
+        echo "  \033[1;36mWPLite CLI\033[0m - WordPress Plugin Framework Build Tool\n";
         echo "\n";
         echo "  \033[1;33mUsage:\033[0m\n";
         echo "    php wplite <command> [options]\n";
         echo "\n";
         echo "  \033[1;33mAvailable Commands:\033[0m\n";
-        echo "    \033[32minstall\033[0m       Brand the framework with your plugin namespace\n";
+        echo "    \033[32mbuild\033[0m         Build the framework with your plugin namespace (recommended)\n";
+        echo "    \033[90minstall\033[0m       [deprecated] Modify src/ directly (destructive)\n";
         echo "\n";
-        echo "  \033[1;33mInstall Options:\033[0m\n";
+        echo "  \033[1;33mBuild Options:\033[0m\n";
         echo "    --prefix=<Name>   The namespace prefix (e.g., MyPlugin)\n";
-        echo "    --dry-run         Preview changes without modifying files\n";
-        echo "    --force           Skip confirmation prompt\n";
+        echo "    --output=<path>   Output directory (default: ./core)\n";
+        echo "    --dry-run         Preview changes without creating files\n";
         echo "\n";
         echo "  \033[1;33mExamples:\033[0m\n";
-        echo "    php wplite install --prefix=MyPlugin\n";
-        echo "    php wplite install --prefix=MyPlugin --dry-run\n";
-        echo "    php wplite install --prefix=MyPlugin --force\n";
+        echo "    php wplite build --prefix=MyPlugin              # Build to ./core\n";
+        echo "    php wplite build --prefix=MyPlugin --output=lib # Build to ./lib\n";
+        echo "    php wplite build                                # Uses saved prefix\n";
+        echo "    php wplite build --dry-run                      # Preview only\n";
+        echo "\n";
+        echo "  \033[1;33mUsage from Plugin (via Composer):\033[0m\n";
+        echo "    php vendor/hsm/wplite/wplite build --prefix=YourPlugin --output=wplite\n";
         echo "\n";
     }
 

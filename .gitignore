@@ -1,4 +1,6 @@
 /vendor/
+/core/
+wplite-config.json
 node_modules/
 npm-debug.log
 yarn-error.log
