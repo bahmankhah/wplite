@@ -12,7 +12,7 @@ class Config{
         foreach ($files as $file) {
             $configs[basename($file, '.php')] = require_once($file);
         }
-        $GLOBALS['wplite_configs'] = $configs;
+        $GLOBALS[md5(App::pluginPath()).'_wplite_configs'] = $configs;
     }
     
     public static function get($configName, $default = null){
