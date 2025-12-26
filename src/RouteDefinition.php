@@ -10,7 +10,7 @@ class RouteDefinition
     private $route;
     private $type;
     private $method;
-    private $useNamespace = true;
+    private $namespace;
 
     public function __construct(string $method, string $route, array $callable, string $type = 'rest')
     {
@@ -20,12 +20,12 @@ class RouteDefinition
         $this->type = $type;
     }
 
-    public function withoutNamespace(): self
+    public function namespace($value): self
     {
         if($this->type !== 'rest'){
             return $this;
         }
-        $this->useNamespace = false;
+        $this->namespace = $value;
         return $this;
     }
 
@@ -86,10 +86,10 @@ class RouteDefinition
         $dynamic = $this->generateDynamicRoute($this->route);
 
         add_action('rest_api_init', function () use ($dynamic) {
-            $namespace ='';
-            if($this->useNamespace){
+            $namespace =appConfig('app.api.namespace', 'wplite/v1');
+            if($this->namespace){
                 
-                $namespace = appConfig('app.api.namespace', 'wplite/v1');
+                $namespace = $this->namespace;
             }
 
             register_rest_route($namespace, "/{$dynamic}", [
