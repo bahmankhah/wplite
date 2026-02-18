@@ -112,3 +112,40 @@ if(!function_exists('reverse')){
     }
 }
 
+
+if (!function_exists('getClientIp')) {
+    /**
+     * Get client IP address with proxy/CDN support
+     * Supports Cloudflare, Arvan, load balancers, and standard proxies
+     */
+    function getClientIp(): string
+    {
+        $ipKeys = [
+            'HTTP_CF_CONNECTING_IP',     // Cloudflare
+            'HTTP_CLIENT_IP',            // Proxy
+            'HTTP_X_FORWARDED_FOR',      // Load balancer/proxy
+            'HTTP_X_FORWARDED',          // Proxy
+            'HTTP_X_CLUSTER_CLIENT_IP',  // Cluster
+            'HTTP_FORWARDED_FOR',        // Proxy
+            'HTTP_FORWARDED',            // Proxy
+            'HTTP_X_REAL_IP',            // Nginx reverse proxy
+            'HTTP_AR_REAL_IP',           // Arvan CDN
+            'X_REAL_IP',                 // Nginx reverse proxy
+            'AR_REAL_IP',                // Arvan CDN
+            'REMOTE_ADDR'                // Standard
+        ];
+
+        foreach ($ipKeys as $key) {
+            if (!empty($_SERVER[$key])) {
+                $ips = explode(',', $_SERVER[$key]);
+                $ip = trim($ips[0]);
+
+                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                    return $ip;
+                }
+            }
+        }
+
+        return $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    }
+}
