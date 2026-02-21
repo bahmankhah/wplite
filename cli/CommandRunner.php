@@ -5,6 +5,15 @@ namespace WPLiteCLI;
 use WPLiteCLI\Commands\BuildCommand;
 use WPLiteCLI\Commands\InstallCommand;
 
+/**
+ * CommandRunner — CLI command dispatcher for the wplite tool.
+ *
+ * Role: Parses command-line arguments, resolves the requested command,
+ *       and executes it. Entry point for `php wplite <command>`.
+ *
+ * @see \WPLiteCLI\Commands\BuildCommand    Primary build command.
+ * @see \WPLiteCLI\Commands\Command          Abstract command base.
+ */
 class CommandRunner
 {
     private array $argv;

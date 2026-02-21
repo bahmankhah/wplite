@@ -2,6 +2,19 @@
 
 namespace WPLiteCLI\Commands;
 
+/**
+ * Command — abstract base class for all CLI commands.
+ *
+ * Role: Provides option parsing, output helpers (info, warning, error),
+ *       and a user confirmation prompt for CLI commands.
+ *
+ * How to use:
+ *   - Extend this class and implement execute().
+ *   - Access CLI options via $this->option('name', $default).
+ *   - Use $this->info/warning/error/line for colored output.
+ *
+ * @see \WPLiteCLI\CommandRunner  Dispatches commands.
+ */
 abstract class Command
 {
     protected array $options;

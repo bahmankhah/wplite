@@ -6,6 +6,29 @@ use Exception;
 use ReflectionClass;
 use WPLite\Facades\App;
 
+/**
+ * Application — main entry point and IoC container for a WPLite plugin.
+ *
+ * Role: Extends Container with auto-resolving dependency injection via
+ *       reflection, plugin path/file management, and the boot lifecycle.
+ *
+ * Responsibilities:
+ *   - Resolve class instances with automatic constructor injection (make).
+ *   - Store and expose the plugin file path and directory path.
+ *   - Boot the framework: load .env, Config, and ProviderManager.
+ *   - Hold the current request reference.
+ *
+ * How to use:
+ *   - Access via the App facade: App::make(MyService::class).
+ *   - Call App::boot() once in your main plugin file after setting paths.
+ *
+ * Avoid:
+ *   - Do not instantiate Application directly; use the App facade.
+ *   - Do not call boot() more than once per request.
+ *
+ * @see \WPLite\Container          Parent class (bind/resolve/has).
+ * @see \WPLite\ProviderManager     Provider loading triggered by boot().
+ */
 class Application extends Container{
     /**
      * Resolve a class instance from the container.

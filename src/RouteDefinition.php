@@ -1,8 +1,34 @@
 <?php
+
 namespace WPLite;
 
 use WPLite\Facades\Route;
 
+/**
+ * RouteDefinition — represents a single route and registers it with WordPress.
+ *
+ * Role: Holds all metadata for one route (method, path, callable, middleware,
+ *       type) and registers it into the appropriate WordPress hook system.
+ *
+ * Responsibilities:
+ *   - Store route method, path, callable, middleware stack, and namespace.
+ *   - Convert {param} placeholders to regex for REST route registration.
+ *   - Register into WP via register_rest_route, wp_ajax_, add_menu_page,
+ *     or template_redirect depending on route type.
+ *   - Support named routes and URL building via buildRoute().
+ *
+ * How to use:
+ *   - Created by RouteManager::get() / ::post(). Chain with:
+ *     ->middleware(MyMiddleware::class)
+ *     ->namespace('custom/v1')
+ *     ->name('route.name')
+ *
+ * Avoid:
+ *   - Do not instantiate directly; use RouteManager (Route facade).
+ *
+ * @see \WPLite\RouteManager   Creates these objects.
+ * @see \WPLite\Pipeline        Processes middleware for each route.
+ */
 class RouteDefinition
 {
     private $middlewares = [];

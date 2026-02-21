@@ -2,6 +2,27 @@
 
 namespace WPLiteCLI\Commands;
 
+/**
+ * BuildCommand — namespace isolation build tool.
+ *
+ * Role: Copies the WPLite framework source into the consumer plugin's
+ *       directory and rewrites all namespaces to the plugin's unique
+ *       prefix, enabling multiple WPLite plugins to coexist.
+ *
+ * Responsibilities:
+ *   - Copy src/ to the output directory (default: src/WPLite/).
+ *   - Rewrite namespace/use/FQCN references: WPLite\ → {Prefix}\WPLite\.
+ *   - Transform helper functions to avoid global name collisions.
+ *   - Save the prefix to wplite-config.json for future builds.
+ *   - Support --dry-run for previewing changes.
+ *
+ * Usage:
+ *   php wplite build --prefix=MyPlugin
+ *   php wplite build --dry-run
+ *   php wplite build --output=lib/Core
+ *
+ * @see \WPLiteCLI\Commands\Command  Base command class.
+ */
 class BuildCommand extends Command
 {
     private string $prefix;

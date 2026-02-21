@@ -2,6 +2,19 @@
 
 namespace WPLite\Contracts\Auth;
 
+/**
+ * Authenticatable contract — defines the interface for user models.
+ *
+ * Role: Any user model used with auth guards must implement these
+ *       methods for identifier, password, and remember token access.
+ *
+ * How to use:
+ *   - Implement on your user model class.
+ *   - Return instances of this from Guard::user().
+ *
+ * @see \WPLite\Contracts\Auth\Guard  Uses Authenticatable for user retrieval.
+ * @see \WPLite\Auth\GenericUser       Example implementation.
+ */
 interface Authenticatable
 {
     /**

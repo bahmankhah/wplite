@@ -5,6 +5,26 @@ namespace WPLite\Auth\Guards;
 use WPLite\Adapters\Adapter;
 use WPLite\Contracts\Auth\Guard;
 
+/**
+ * SSOGuard — OAuth2/SSO authentication guard.
+ *
+ * Role: Implements the Guard contract for Single Sign-On authentication
+ *       using OAuth2 authorization code flow.
+ *
+ * Responsibilities:
+ *   - Check authentication status via WordPress user + SSO token expiry.
+ *   - Exchange authorization codes for access tokens.
+ *   - Create or update WordPress users from SSO profile data.
+ *   - Handle token refresh when expired.
+ *   - Log in/out users via WordPress session management.
+ *
+ * Configuration:
+ *   Set in configs/adapters.php under auth -> contexts -> sso:
+ *   - login_url, validate_url, userinfo_url, client_id, redirect_url
+ *
+ * @see \WPLite\Contracts\Auth\Guard  Interface this implements.
+ * @see \WPLite\Adapters\Adapter       Base class providing $config.
+ */
 class SSOGuard extends Adapter implements Guard
 {
 

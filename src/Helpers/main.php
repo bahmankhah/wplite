@@ -1,4 +1,23 @@
 <?php
+/**
+ * Global Helper Functions — convenience functions available everywhere.
+ *
+ * Role: Provides framework-wide helper functions that are autoloaded via
+ *       Composer's "files" autoload or included by the autoloader.
+ *
+ * Key functions:
+ *   - appConfig($key, $default) — Dot-notation access to configs/*.php values.
+ *   - appLogger($message) — Write to the plugin's log file.
+ *   - load_env_file($path) — Parse .env files into environment variables.
+ *   - view($path, $data) — Shortcut for View::render().
+ *   - reverse($routeName, $params) — Generate URL for a named route.
+ *   - replacePlaceholders($template, $vars) — String template substitution.
+ *   - getClientIp() — Get client IP with CDN/proxy support.
+ *
+ * Avoid:
+ *   - Do not add application-specific helpers here; this is framework code.
+ *   - In consumer plugins, create your own helpers file instead.
+ */
 
 use WPLite\Facades\App;
 use WPLite\Facades\Route;

@@ -1,9 +1,37 @@
 <?php
+
 namespace WPLite\Facades;
 
 use WPLite\Container;
 use RuntimeException;
 
+/**
+ * Facade — abstract base class for all facades.
+ *
+ * Role: Provides static-like access to services resolved from the container.
+ *       Each concrete facade returns a class name from getFacadeAccessor(),
+ *       which is resolved (or instantiated) and cached.
+ *
+ * Responsibilities:
+ *   - Define the getFacadeAccessor() contract for subclasses.
+ *   - Resolve and cache the underlying service instance.
+ *   - Proxy static method calls to the resolved instance.
+ *
+ * How to use:
+ *   - Extend Facade and implement getFacadeAccessor() returning a class FQCN.
+ *   - Call static methods on your facade: MyFacade::someMethod().
+ *
+ * Resolution order:
+ *   1. Check resolved instance cache.
+ *   2. Check Container::has() and resolve from container.
+ *   3. Instantiate the class directly (new $name()).
+ *
+ * Avoid:
+ *   - Do not store mutable state on facades.
+ *   - Do not call getFacadeRoot() directly; use the static proxy.
+ *
+ * @see \WPLite\Container  Service storage backend.
+ */
 abstract class Facade
 {
 

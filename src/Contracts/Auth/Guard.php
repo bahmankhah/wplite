@@ -2,6 +2,19 @@
 
 namespace WPLite\Contracts\Auth;
 
+/**
+ * Guard contract — defines the interface for authentication guards.
+ *
+ * Role: Any authentication strategy (SSO, JWT, session, etc.) must
+ *       implement these methods to integrate with the Auth facade.
+ *
+ * How to use:
+ *   - Implement this interface + extend Adapter for new auth guards.
+ *   - Register in configs/adapters.php under the 'auth' key.
+ *
+ * @see \WPLite\Auth\Guards\SSOGuard  Built-in SSO/OAuth2 guard.
+ * @see \WPLite\Facades\Auth           Facade for authentication.
+ */
 interface Guard
 {
     /**

@@ -2,6 +2,21 @@
 
 namespace WPLite;
 
+/**
+ * PostType — example custom post type registration.
+ *
+ * Role: Demonstrates how to register a custom post type with meta boxes
+ *       in the WPLite framework. This is a CONCRETE EXAMPLE, not an
+ *       abstract base class.
+ *
+ * Note: When creating your own custom post types, you can either:
+ *   - Create a similar class and instantiate it in a provider's onInit(), or
+ *   - Register post types directly in a provider's onInit() hook.
+ *
+ * This class registers a 'dnp-video' post type with a video URL meta box.
+ *
+ * @see \WPLite\Provider  Use onInit() to register custom post types.
+ */
 class PostType
 {
 

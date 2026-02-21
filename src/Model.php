@@ -4,6 +4,33 @@ namespace WPLite;
 
 use BadMethodCallException;
 
+/**
+ * Model — fluent query builder and relationship manager wrapping $wpdb.
+ *
+ * Role: Provides an Eloquent-inspired API for querying WordPress database
+ *       tables without writing raw SQL.
+ *
+ * Responsibilities:
+ *   - Build SELECT queries fluently (select, where, join, orderBy, groupBy, limit).
+ *   - Execute CRUD operations (create, update, delete, get, first).
+ *   - Define and eagerly load relationships (hasMany, hasOne, belongsTo, hasOneMeta).
+ *   - Support custom eager-loaded computed fields via with().
+ *   - Hide fields from results via hide().
+ *
+ * How to use:
+ *   - Extend this class, set $table (and optionally $primaryKey):
+ *     class Order extends Model { protected $table = 'wp_orders'; }
+ *   - Query: (new Order())->where('status','=','active')->orderBy('id','DESC')->get();
+ *   - Define relationships as methods calling hasMany/hasOne/belongsTo/hasOneMeta.
+ *
+ * Avoid:
+ *   - Do not use $wpdb directly when Model's query builder supports the operation.
+ *   - Do not forget to set $table on subclasses.
+ *   - Each get()/first() call resets the query builder (newQuery).
+ *
+ * @see \WPLite\DB             Static database helper for raw queries.
+ * @see \WPLite\JsonResource    Transform query results for API responses.
+ */
 class Model
 {
     protected $table;

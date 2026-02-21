@@ -2,6 +2,15 @@
 
 namespace WPLite\Contracts;
 
+/**
+ * ServiceProvider contract — defines the lifecycle hooks for providers.
+ *
+ * Role: The interface that all service providers must implement. Each method
+ *       corresponds to a specific point in the WordPress plugin lifecycle.
+ *
+ * @see \WPLite\Provider         Abstract base that implements this with empty defaults.
+ * @see \WPLite\ProviderManager   Wires these hooks to WordPress actions.
+ */
 interface ServiceProvider
 {
     public function register();      // bind services, configs

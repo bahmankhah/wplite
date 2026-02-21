@@ -1,4 +1,18 @@
 <?php
+/**
+ * Standalone Autoloader — PSR-4 autoloading without Composer.
+ *
+ * Role: Provides autoloading for the WPLite\ namespace and consumer
+ *       App\ namespace when Composer is not available. Also loads
+ *       helper files and bootstraps Config + ProviderManager.
+ *
+ * Note: When using Composer (recommended), this file is NOT needed.
+ *       Composer's autoloader handles class loading, and the helper
+ *       files are loaded via composer.json "files" autoload.
+ *       Application::boot() handles Config and ProviderManager loading.
+ *
+ * @see composer.json  Preferred autoloading configuration.
+ */
 
 use WPLite\Facades\Config;
 use WPLite\ProviderManager;
